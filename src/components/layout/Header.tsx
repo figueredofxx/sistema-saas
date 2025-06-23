@@ -1,6 +1,5 @@
-
 import { Button } from "@/components/ui/button";
-import { Search, User } from "lucide-react";
+import { Search, User, Plus } from "lucide-react";
 
 interface HeaderProps {
   sidebarOpen: boolean;
