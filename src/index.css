@@ -95,40 +95,60 @@
 }
 
 /* Material Design 3 Component Styles */
-.md3-surface {
-  @apply bg-surface rounded-xl shadow-elevation-1;
-}
+@layer components {
+  .md3-surface {
+    @apply bg-surface rounded-xl shadow-elevation-1;
+  }
 
-.md3-surface-variant {
-  @apply bg-surface-variant rounded-xl;
-}
+  .md3-surface-variant {
+    @apply bg-surface-variant rounded-xl;
+  }
 
-.md3-container {
-  @apply bg-surface-container rounded-xl shadow-elevation-1;
-}
+  .md3-container {
+    @apply bg-surface-container rounded-xl shadow-elevation-1;
+  }
 
-.md3-filled-button {
-  @apply bg-primary text-primary-foreground hover:shadow-elevation-2 hover:bg-primary/90 rounded-full px-6 py-3 font-medium transition-all duration-200;
-}
+  .md3-filled-button {
+    @apply bg-primary text-primary-foreground rounded-full px-6 py-3 font-medium transition-all duration-200;
+  }
 
-.md3-outlined-button {
-  @apply border border-outline text-primary hover:bg-primary/8 hover:shadow-elevation-1 rounded-full px-6 py-3 font-medium transition-all duration-200;
-}
+  .md3-filled-button:hover {
+    @apply shadow-elevation-2;
+    background-color: rgb(103 80 164 / 0.9);
+  }
 
-.md3-text-button {
-  @apply text-primary hover:bg-primary/8 rounded-full px-4 py-2 font-medium transition-all duration-200;
-}
+  .md3-outlined-button {
+    @apply border border-outline text-primary rounded-full px-6 py-3 font-medium transition-all duration-200;
+  }
 
-.md3-elevated-card {
-  @apply bg-surface shadow-elevation-1 hover:shadow-elevation-2 rounded-xl transition-all duration-200;
-}
+  .md3-outlined-button:hover {
+    @apply shadow-elevation-1;
+    background-color: rgb(103 80 164 / 0.08);
+  }
 
-.md3-filled-card {
-  @apply bg-surface-container-highest rounded-xl;
-}
+  .md3-text-button {
+    @apply text-primary rounded-full px-4 py-2 font-medium transition-all duration-200;
+  }
 
-.md3-outlined-card {
-  @apply bg-surface border border-outline-variant rounded-xl;
+  .md3-text-button:hover {
+    background-color: rgb(103 80 164 / 0.08);
+  }
+
+  .md3-elevated-card {
+    @apply bg-surface shadow-elevation-1 rounded-xl transition-all duration-200;
+  }
+
+  .md3-elevated-card:hover {
+    @apply shadow-elevation-2;
+  }
+
+  .md3-filled-card {
+    @apply bg-surface-container-highest rounded-xl;
+  }
+
+  .md3-outlined-card {
+    @apply bg-surface border border-outline-variant rounded-xl;
+  }
 }
 
 @media print {
