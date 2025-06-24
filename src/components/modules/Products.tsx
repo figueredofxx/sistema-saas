@@ -2,27 +2,12 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Plus, Search, Filter, Edit, Trash2, Upload, Download, ArrowUpDown, Package } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-
-interface Product {
-  id: string;
-  name: string;
-  category: string;
-  color?: string;
-  stock: number;
-  imei?: string;
-  costPrice: number;
-  salePrice: number;
-  photo?: string;
-  createdAt: Date;
-}
+import { Edit, Trash2, Package } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { ProductsHeader } from "./products/ProductsHeader";
+import { ProductsFilters } from "./products/ProductsFilters";
+import { Product } from "./products/types";
 
 export function Products() {
   const { toast } = useToast();
@@ -59,18 +44,6 @@ export function Products() {
     }
   ]);
 
-  const [showAddDialog, setShowAddDialog] = useState(false);
-  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
-  const [newProduct, setNewProduct] = useState<Partial<Product>>({
-    name: "",
-    category: "",
-    color: "",
-    stock: 0,
-    imei: "",
-    costPrice: 0,
-    salePrice: 0
-  });
-
   const [filters, setFilters] = useState({
     search: "",
     category: "",
@@ -88,75 +61,27 @@ export function Products() {
     return matchesSearch && matchesCategory && matchesLowStock;
   });
 
-  const handleSaveProduct = () => {
-    if (!newProduct.name || !newProduct.category || newProduct.salePrice! <= 0) {
-      toast({
-        title: "Erro",
-        description: "Preencha todos os campos obrigatórios",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    if (editingProduct) {
-      setProducts(products.map(p => 
-        p.id === editingProduct.id 
-          ? { ...newProduct, id: editingProduct.id, createdAt: editingProduct.createdAt } as Product
-          : p
-      ));
-      toast({
-        title: "Produto atualizado!",
-        description: "Produto editado com sucesso"
-      });
-    } else {
-      const product: Product = {
-        ...newProduct,
-        id: Date.now().toString(),
-        createdAt: new Date()
-      } as Product;
-      
-      setProducts([...products, product]);
-      toast({
-        title: "Produto cadastrado!",
-        description: "Novo produto adicionado ao estoque"
-      });
-    }
-
-    setNewProduct({
-      name: "",
-      category: "",
-      color: "",
-      stock: 0,
-      imei: "",
-      costPrice: 0,
-      salePrice: 0
-    });
-    setShowAddDialog(false);
-    setEditingProduct(null);
+  const getStockStatus = (stock: number) => {
+    if (stock === 0) return { color: "bg-red-100 text-red-700", label: "Sem estoque" };
+    if (stock <= 5) return { color: "bg-yellow-100 text-yellow-700", label: "Estoque baixo" };
+    return { color: "bg-green-100 text-green-700", label: "Em estoque" };
   };
 
-  const handleEditProduct = (product: Product) => {
-    setNewProduct(product);
-    setEditingProduct(product);
-    setShowAddDialog(true);
-  };
-
-  const handleDeleteProduct = (id: string) => {
-    setProducts(products.filter(p => p.id !== id));
+  const handleNewProduct = () => {
     toast({
-      title: "Produto removido!",
-      description: "Produto excluído do estoque"
+      title: "Novo produto!",
+      description: "Funcionalidade será implementada"
     });
   };
 
-  const handleImportProducts = () => {
+  const handleImport = () => {
     toast({
       title: "Importação iniciada!",
-      description: "Funcionalidade de importação será implementada"
+      description: "Funcionalidade será implementada"
     });
   };
 
-  const handleExportProducts = () => {
+  const handleExport = () => {
     const csv = [
       ["Nome", "Categoria", "Cor", "Estoque", "IMEI/Código", "Preço Custo", "Preço Venda"].join(","),
       ...filteredProducts.map(p => [
@@ -183,144 +108,28 @@ export function Products() {
     });
   };
 
-  const getStockStatus = (stock: number) => {
-    if (stock === 0) return { color: "bg-red-100 text-red-700", label: "Sem estoque" };
-    if (stock <= 5) return { color: "bg-yellow-100 text-yellow-700", label: "Estoque baixo" };
-    return { color: "bg-green-100 text-green-700", label: "Em estoque" };
+  const handleEdit = (product: Product) => {
+    toast({
+      title: "Editar produto",
+      description: `Editando ${product.name}`
+    });
+  };
+
+  const handleDelete = (id: string) => {
+    setProducts(products.filter(p => p.id !== id));
+    toast({
+      title: "Produto removido!",
+      description: "Produto excluído do estoque"
+    });
   };
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Produtos</h1>
-          <p className="text-gray-600">Gerencie seu estoque e catálogo</p>
-        </div>
-        <div className="flex space-x-2">
-          <Button variant="outline" onClick={handleImportProducts}>
-            <Upload className="w-4 h-4 mr-2" />
-            Importar
-          </Button>
-          <Button variant="outline" onClick={handleExportProducts}>
-            <Download className="w-4 h-4 mr-2" />
-            Exportar
-          </Button>
-          <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
-            <DialogTrigger asChild>
-              <Button className="bg-orange-500 hover:bg-orange-600">
-                <Plus className="w-4 h-4 mr-2" />
-                Novo Produto
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-2xl">
-              <DialogHeader>
-                <DialogTitle>
-                  {editingProduct ? "Editar Produto" : "Novo Produto"}
-                </DialogTitle>
-              </DialogHeader>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="productName">Nome do Produto *</Label>
-                  <Input
-                    id="productName"
-                    value={newProduct.name}
-                    onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-                    placeholder="Nome do produto"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="category">Categoria *</Label>
-                  <Select 
-                    value={newProduct.category} 
-                    onValueChange={(value) => setNewProduct({ ...newProduct, category: value })}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecione a categoria" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {categories.map(cat => (
-                        <SelectItem key={cat} value={cat}>{cat}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <Label htmlFor="color">Cor</Label>
-                  <Input
-                    id="color"
-                    value={newProduct.color}
-                    onChange={(e) => setNewProduct({ ...newProduct, color: e.target.value })}
-                    placeholder="Cor do produto"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="stock">Quantidade em Estoque *</Label>
-                  <Input
-                    id="stock"
-                    type="number"
-                    min="0"
-                    value={newProduct.stock}
-                    onChange={(e) => setNewProduct({ ...newProduct, stock: parseInt(e.target.value) || 0 })}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="imei">IMEI/Código/SN</Label>
-                  <Input
-                    id="imei"
-                    value={newProduct.imei}
-                    onChange={(e) => setNewProduct({ ...newProduct, imei: e.target.value })}
-                    placeholder="Código identificador"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="costPrice">Preço de Custo</Label>
-                  <Input
-                    id="costPrice"
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    value={newProduct.costPrice}
-                    onChange={(e) => setNewProduct({ ...newProduct, costPrice: parseFloat(e.target.value) || 0 })}
-                    placeholder="0,00"
-                  />
-                </div>
-                <div className="md:col-span-2">
-                  <Label htmlFor="salePrice">Preço de Venda *</Label>
-                  <Input
-                    id="salePrice"
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    value={newProduct.salePrice}
-                    onChange={(e) => setNewProduct({ ...newProduct, salePrice: parseFloat(e.target.value) || 0 })}
-                    placeholder="0,00"
-                  />
-                </div>
-              </div>
-              <div className="flex justify-end space-x-2 mt-6">
-                <Button variant="outline" onClick={() => {
-                  setShowAddDialog(false);
-                  setEditingProduct(null);
-                  setNewProduct({
-                    name: "",
-                    category: "",
-                    color: "",
-                    stock: 0,
-                    imei: "",
-                    costPrice: 0,
-                    salePrice: 0
-                  });
-                }}>
-                  Cancelar
-                </Button>
-                <Button onClick={handleSaveProduct} className="bg-orange-500 hover:bg-orange-600">
-                  {editingProduct ? "Atualizar" : "Cadastrar"}
-                </Button>
-              </div>
-            </DialogContent>
-          </Dialog>
-        </div>
-      </div>
+      <ProductsHeader
+        onNewProduct={handleNewProduct}
+        onImport={handleImport}
+        onExport={handleExport}
+      />
 
       <Card>
         <CardHeader>
@@ -330,47 +139,16 @@ export function Products() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          {/* Filters */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="md:col-span-2">
-              <Label>Buscar Produto</Label>
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                <Input
-                  placeholder="Nome ou código do produto..."
-                  value={filters.search}
-                  onChange={(e) => setFilters({ ...filters, search: e.target.value })}
-                  className="pl-10"
-                />
-              </div>
-            </div>
-            <div>
-              <Label>Categoria</Label>
-              <Select value={filters.category} onValueChange={(value) => setFilters({...filters, category: value})}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Todas" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="">Todas</SelectItem>
-                  {categories.map(cat => (
-                    <SelectItem key={cat} value={cat}>{cat}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="flex items-end">
-              <Button
-                variant={filters.lowStock ? "default" : "outline"}
-                onClick={() => setFilters({ ...filters, lowStock: !filters.lowStock })}
-                className={filters.lowStock ? "bg-orange-500 hover:bg-orange-600" : ""}
-              >
-                <Filter className="w-4 h-4 mr-2" />
-                Estoque Baixo
-              </Button>
-            </div>
-          </div>
+          <ProductsFilters
+            searchTerm={filters.search}
+            onSearchChange={(value) => setFilters({ ...filters, search: value })}
+            selectedCategory={filters.category}
+            onCategoryChange={(value) => setFilters({ ...filters, category: value })}
+            lowStockFilter={filters.lowStock}
+            onLowStockToggle={() => setFilters({ ...filters, lowStock: !filters.lowStock })}
+            categories={categories}
+          />
 
-          {/* Products Table */}
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
@@ -408,14 +186,14 @@ export function Products() {
                           <Button
                             size="sm"
                             variant="outline"
-                            onClick={() => handleEditProduct(product)}
+                            onClick={() => handleEdit(product)}
                           >
                             <Edit className="w-4 h-4" />
                           </Button>
                           <Button
                             size="sm"
                             variant="outline"
-                            onClick={() => handleDeleteProduct(product.id)}
+                            onClick={() => handleDelete(product.id)}
                             className="text-red-600 hover:text-red-700"
                           >
                             <Trash2 className="w-4 h-4" />

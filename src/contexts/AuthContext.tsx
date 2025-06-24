@@ -75,12 +75,34 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Simular login
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    // Dados mockados
+    // Default admin credentials
+    if (email === 'admin@apex.com' && password === 'admin123') {
+      const adminUser: User = {
+        id: 'admin',
+        name: 'Administrador',
+        email: 'admin@apex.com',
+        role: 'admin',
+        subscriptionPlan: 'multi' as const
+      };
+
+      setUser(adminUser);
+      localStorage.setItem('user', JSON.stringify(adminUser));
+      setIsLoading(false);
+      
+      toast({
+        title: "Login de administrador realizado!",
+        description: "Bem-vindo ao painel administrativo"
+      });
+      
+      return true;
+    }
+    
+    // Dados mockados para lojistas
     const mockUser: User = {
       id: '1',
       name: 'João Silva',
       email: email,
-      role: email.includes('admin') ? 'admin' : 'lojista',
+      role: 'lojista',
       storeId: '1',
       storeName: 'Loja Exemplo',
       subscriptionPlan: 'trial',
