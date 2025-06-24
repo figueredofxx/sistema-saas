@@ -16,9 +16,83 @@ import {
   Filter,
   Download
 } from 'lucide-react';
+import { StoreProfile } from '@/components/admin/StoreProfile';
+import { TicketManager } from '@/components/admin/TicketManager';
+import { FinancialManager } from '@/components/admin/FinancialManager';
+import { SystemMonitoring } from '@/components/admin/SystemMonitoring';
+import { SystemConfig } from '@/components/admin/SystemConfig';
+import { ReportsManager } from '@/components/admin/ReportsManager';
 
 export default function AdminDashboard() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [lojistas, setLojistas] = useState([
+    {
+      id: 1,
+      name: 'João Silva',
+      store: 'Loja do João',
+      cnpj: '12.345.678/0001-90',
+      email: 'joao@loja.com',
+      phone: '(11) 99999-1111',
+      plan: 'single',
+      status: 'active',
+      lastLogin: '2024-06-24',
+      revenue: 'R$ 2.340'
+    },
+    {
+      id: 2,
+      name: 'Maria Santos',
+      store: 'Fashion Store',
+      cnpj: '98.765.432/0001-10',
+      email: 'maria@fashion.com',
+      phone: '(11) 99999-2222',
+      plan: 'multi',
+      status: 'trial',
+      lastLogin: '2024-06-23',
+      revenue: 'R$ 5.670'
+    },
+    {
+      id: 3,
+      name: 'Pedro Costa',
+      store: 'TechnoShop',
+      cnpj: '11.222.333/0001-44',
+      email: 'pedro@techno.com',
+      phone: '(11) 99999-3333',
+      plan: 'single',
+      status: 'expired',
+      lastLogin: '2024-06-20',
+      revenue: 'R$ 890'
+    }
+  ]);
+
+  const tickets = [
+    {
+      id: 1,
+      lojista: 'João Silva',
+      subject: 'Erro na impressão de cupons',
+      category: 'Técnico',
+      status: 'open',
+      created: '2024-06-24 14:30',
+      priority: 'high'
+    },
+    {
+      id: 2,
+      lojista: 'Maria Santos',
+      subject: 'Dúvida sobre cobrança',
+      category: 'Financeiro',
+      status: 'in_progress',
+      created: '2024-06-24 10:15',
+      priority: 'medium'
+    },
+    {
+      id: 3,
+      lojista: 'Pedro Costa',
+      subject: 'Solicitação de reativação',
+      category: 'Comercial',
+      status: 'resolved',
+      created: '2024-06-23 16:45',
+      priority: 'low'
+    }
+  ];
 
   const stats = [
     {
@@ -51,68 +125,11 @@ export default function AdminDashboard() {
     }
   ];
 
-  const lojistas = [
-    {
-      id: 1,
-      name: 'João Silva',
-      store: 'Loja do João',
-      cnpj: '12.345.678/0001-90',
-      plan: 'single',
-      status: 'active',
-      lastLogin: '2024-06-24',
-      revenue: 'R$ 2.340'
-    },
-    {
-      id: 2,
-      name: 'Maria Santos',
-      store: 'Fashion Store',
-      cnpj: '98.765.432/0001-10',
-      plan: 'multi',
-      status: 'trial',
-      lastLogin: '2024-06-23',
-      revenue: 'R$ 5.670'
-    },
-    {
-      id: 3,
-      name: 'Pedro Costa',
-      store: 'TechnoShop',
-      cnpj: '11.222.333/0001-44',
-      plan: 'single',
-      status: 'expired',
-      lastLogin: '2024-06-20',
-      revenue: 'R$ 890'
-    }
-  ];
-
-  const tickets = [
-    {
-      id: 1,
-      lojista: 'João Silva',
-      subject: 'Erro na impressão de cupons',
-      category: 'Técnico',
-      status: 'open',
-      created: '2024-06-24 14:30',
-      priority: 'high'
-    },
-    {
-      id: 2,
-      lojista: 'Maria Santos',
-      subject: 'Dúvida sobre cobrança',
-      category: 'Financeiro',
-      status: 'in_progress',
-      created: '2024-06-24 10:15',
-      priority: 'medium'
-    },
-    {
-      id: 3,
-      lojista: 'Pedro Costa',
-      subject: 'Solicitação de reativação',
-      category: 'Comercial',
-      status: 'resolved',
-      created: '2024-06-23 16:45',
-      priority: 'low'
-    }
-  ];
+  const handleUpdateLojista = (id: number, data: any) => {
+    setLojistas(lojistas.map(lojista => 
+      lojista.id === id ? { ...lojista, ...data } : lojista
+    ));
+  };
 
   const getStatusBadge = (status: string) => {
     const styles = {
@@ -148,11 +165,14 @@ export default function AdminDashboard() {
               <p className="text-gray-600">Gestão completa da plataforma SaaS</p>
             </div>
             <div className="flex space-x-3">
-              <Button variant="outline">
+              <Button 
+                variant="outline"
+                className="hover:bg-slate-700 hover:text-white transition-colors"
+              >
                 <Download className="w-4 h-4 mr-2" />
                 Relatórios
               </Button>
-              <Button className="bg-orange-600 hover:bg-orange-700">
+              <Button className="bg-orange-600 hover:bg-slate-700 hover:text-white transition-colors">
                 <Settings className="w-4 h-4 mr-2" />
                 Configurações
               </Button>
@@ -167,7 +187,7 @@ export default function AdminDashboard() {
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
-              <Card key={index}>
+              <Card key={index} className="hover:bg-slate-700 hover:text-white transition-colors cursor-pointer">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
@@ -185,11 +205,13 @@ export default function AdminDashboard() {
 
         {/* Main Content */}
         <Tabs defaultValue="lojistas" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-6">
             <TabsTrigger value="lojistas">Lojistas</TabsTrigger>
             <TabsTrigger value="suporte">Suporte</TabsTrigger>
             <TabsTrigger value="financeiro">Financeiro</TabsTrigger>
             <TabsTrigger value="sistema">Sistema</TabsTrigger>
+            <TabsTrigger value="configuracoes">Configurações</TabsTrigger>
+            <TabsTrigger value="relatorios">Relatórios</TabsTrigger>
           </TabsList>
 
           <TabsContent value="lojistas">
@@ -207,7 +229,10 @@ export default function AdminDashboard() {
                         className="pl-10 w-64"
                       />
                     </div>
-                    <Button variant="outline">
+                    <Button 
+                      variant="outline"
+                      className="hover:bg-slate-700 hover:text-white transition-colors"
+                    >
                       <Filter className="w-4 h-4 mr-2" />
                       Filtros
                     </Button>
@@ -249,8 +274,17 @@ export default function AdminDashboard() {
                           <td className="text-right py-3 font-semibold">{lojista.revenue}</td>
                           <td className="text-center py-3">
                             <div className="flex justify-center space-x-2">
-                              <Button size="sm" variant="outline">Editar</Button>
-                              <Button size="sm" variant="outline">Detalhes</Button>
+                              <StoreProfile 
+                                lojista={lojista} 
+                                onUpdate={handleUpdateLojista} 
+                              />
+                              <Button 
+                                size="sm" 
+                                variant="outline"
+                                className="hover:bg-slate-700 hover:text-white transition-colors"
+                              >
+                                Detalhes
+                              </Button>
                             </div>
                           </td>
                         </tr>
@@ -265,7 +299,10 @@ export default function AdminDashboard() {
           <TabsContent value="suporte">
             <Card>
               <CardHeader>
-                <CardTitle>Sistema de Suporte</CardTitle>
+                <div className="flex items-center justify-between">
+                  <CardTitle>Sistema de Suporte</CardTitle>
+                  <TicketManager isNew />
+                </div>
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
@@ -310,10 +347,7 @@ export default function AdminDashboard() {
                           </td>
                           <td className="text-center py-3 text-sm">{ticket.created}</td>
                           <td className="text-center py-3">
-                            <div className="flex justify-center space-x-2">
-                              <Button size="sm" variant="outline">Responder</Button>
-                              <Button size="sm" variant="outline">Fechar</Button>
-                            </div>
+                            <TicketManager ticket={ticket} />
                           </td>
                         </tr>
                       ))}
@@ -325,107 +359,19 @@ export default function AdminDashboard() {
           </TabsContent>
 
           <TabsContent value="financeiro">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Receita por Plano</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center">
-                      <span>Plano Loja Única</span>
-                      <span className="font-bold">R$ 28.760,00</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Plano Multiloja</span>
-                      <span className="font-bold">R$ 16.918,00</span>
-                    </div>
-                    <div className="border-t pt-4">
-                      <div className="flex justify-between items-center text-lg font-bold">
-                        <span>Total</span>
-                        <span>R$ 45.678,00</span>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>Métricas de Conversão</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center">
-                      <span>Taxa de Conversão Trial → Pago</span>
-                      <span className="font-bold text-green-600">78%</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Churn Rate Mensal</span>
-                      <span className="font-bold text-red-600">3.2%</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>LTV (Lifetime Value)</span>
-                      <span className="font-bold">R$ 2.340</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+            <FinancialManager />
           </TabsContent>
 
           <TabsContent value="sistema">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Status do Sistema</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center">
-                      <span>API Principal</span>
-                      <Badge className="bg-green-100 text-green-700">Online</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Banco de Dados</span>
-                      <Badge className="bg-green-100 text-green-700">Online</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Servidor de Arquivos</span>
-                      <Badge className="bg-green-100 text-green-700">Online</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>WhatsApp API</span>
-                      <Badge className="bg-yellow-100 text-yellow-700">Instável</Badge>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+            <SystemMonitoring />
+          </TabsContent>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle>Alertas Recentes</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex items-start space-x-3">
-                      <AlertTriangle className="w-5 h-5 text-yellow-600 mt-0.5" />
-                      <div>
-                        <p className="text-sm font-medium">Alta latência detectada</p>
-                        <p className="text-xs text-gray-500">Há 15 minutos</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5" />
-                      <div>
-                        <p className="text-sm font-medium">Falha na integração WhatsApp</p>
-                        <p className="text-xs text-gray-500">Há 2 horas</p>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+          <TabsContent value="configuracoes">
+            <SystemConfig />
+          </TabsContent>
+
+          <TabsContent value="relatorios">
+            <ReportsManager />
           </TabsContent>
         </Tabs>
       </div>
