@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,6 +19,9 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Inter', 'system-ui', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -25,7 +29,7 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: 'hsl(var(--primary))',
+					DEFAULT: '#f96700',
 					foreground: 'hsl(var(--primary-foreground))'
 				},
 				secondary: {
@@ -51,6 +55,12 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
+				},
+				orange: {
+					500: '#f96700',
+					600: '#e55b00',
+					50: '#fff7ed',
+					100: '#ffedd5',
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',

@@ -1,5 +1,6 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { Header } from "@/components/layout/Header";
 import { Dashboard } from "@/components/modules/Dashboard";
@@ -10,7 +11,22 @@ import { Statistics } from "@/components/modules/Statistics";
 
 const Index = () => {
   const [activeModule, setActiveModule] = useState("dashboard");
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Close sidebar on resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setSidebarOpen(true);
+      } else {
+        setSidebarOpen(false);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const renderModule = () => {
     switch (activeModule) {
@@ -37,12 +53,15 @@ const Index = () => {
         isOpen={sidebarOpen}
         setIsOpen={setSidebarOpen}
       />
-      <div className={`flex-1 transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-16'}`}>
+      <div className={cn(
+        "flex-1 transition-all duration-300",
+        sidebarOpen && window.innerWidth >= 1024 ? 'lg:ml-64' : 'lg:ml-16'
+      )}>
         <Header 
           sidebarOpen={sidebarOpen}
           setSidebarOpen={setSidebarOpen}
         />
-        <main className="p-6">
+        <main className="p-4 lg:p-6">
           <div className="max-w-7xl mx-auto">
             {renderModule()}
           </div>
