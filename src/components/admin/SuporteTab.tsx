@@ -20,11 +20,11 @@ interface SuporteTabProps {
 export function SuporteTab({ tickets }: SuporteTabProps) {
   const getStatusBadge = (status: string) => {
     const styles = {
-      open: 'bg-red-100 text-red-700',
-      in_progress: 'bg-yellow-100 text-yellow-700',
-      resolved: 'bg-green-100 text-green-700'
+      open: 'bg-red-100 text-red-700 hover:bg-gray-900 hover:text-white',
+      in_progress: 'bg-yellow-100 text-yellow-700 hover:bg-gray-900 hover:text-white',
+      resolved: 'bg-green-100 text-green-700 hover:bg-gray-900 hover:text-white'
     };
-    return styles[status as keyof typeof styles] || 'bg-gray-100 text-gray-700';
+    return styles[status as keyof typeof styles] || 'bg-gray-100 text-gray-700 hover:bg-gray-900 hover:text-white';
   };
 
   const getStatusLabel = (status: string) => {
@@ -34,6 +34,15 @@ export function SuporteTab({ tickets }: SuporteTabProps) {
       resolved: 'Resolvido'
     };
     return labels[status as keyof typeof labels] || status;
+  };
+
+  const getPriorityBadge = (priority: string) => {
+    const styles = {
+      high: 'bg-red-100 text-red-700 hover:bg-gray-900 hover:text-white',
+      medium: 'bg-yellow-100 text-yellow-700 hover:bg-gray-900 hover:text-white',
+      low: 'bg-green-100 text-green-700 hover:bg-gray-900 hover:text-white'
+    };
+    return styles[priority as keyof typeof styles] || 'bg-gray-100 text-gray-700 hover:bg-gray-900 hover:text-white';
   };
 
   return (
@@ -61,12 +70,14 @@ export function SuporteTab({ tickets }: SuporteTabProps) {
             </thead>
             <tbody>
               {tickets.map((ticket) => (
-                <tr key={ticket.id} className="border-b hover:bg-gray-50">
+                <tr key={ticket.id} className="border-b hover:bg-gray-900 hover:text-white transition-colors group">
                   <td className="py-3">#{ticket.id}</td>
                   <td className="py-3">{ticket.lojista}</td>
                   <td className="py-3">{ticket.subject}</td>
                   <td className="text-center py-3">
-                    <Badge variant="outline">{ticket.category}</Badge>
+                    <Badge variant="outline" className="hover:bg-gray-900 hover:text-white transition-colors">
+                      {ticket.category}
+                    </Badge>
                   </td>
                   <td className="text-center py-3">
                     <Badge className={getStatusBadge(ticket.status)}>
@@ -74,13 +85,7 @@ export function SuporteTab({ tickets }: SuporteTabProps) {
                     </Badge>
                   </td>
                   <td className="text-center py-3">
-                    <Badge 
-                      className={
-                        ticket.priority === 'high' ? 'bg-red-100 text-red-700' :
-                        ticket.priority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-                        'bg-green-100 text-green-700'
-                      }
-                    >
+                    <Badge className={getPriorityBadge(ticket.priority)}>
                       {ticket.priority === 'high' ? 'Alta' : 
                        ticket.priority === 'medium' ? 'Média' : 'Baixa'}
                     </Badge>

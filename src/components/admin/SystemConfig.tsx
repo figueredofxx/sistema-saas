@@ -55,10 +55,10 @@ export function SystemConfig() {
               <div>
                 <Label>Logo da Empresa</Label>
                 <div className="mt-2">
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors">
-                    <Image className="w-12 h-12 mx-auto text-gray-400 mb-4" />
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 hover:bg-gray-900 hover:text-white transition-colors group">
+                    <Image className="w-12 h-12 mx-auto text-gray-400 group-hover:text-white mb-4" />
                     <div className="space-y-2">
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-600 group-hover:text-gray-300">
                         {config.logo ? config.logo.name : 'Clique para fazer upload do logo'}
                       </p>
                       <Input
@@ -72,7 +72,7 @@ export function SystemConfig() {
                         type="button"
                         variant="outline"
                         onClick={() => document.getElementById('logo-upload')?.click()}
-                        className="hover:bg-slate-700 hover:text-white transition-colors"
+                        className="hover:bg-gray-900 hover:text-white transition-colors"
                       >
                         <Upload className="w-4 h-4 mr-2" />
                         Selecionar Arquivo
@@ -88,6 +88,7 @@ export function SystemConfig() {
                     value={config.companyName}
                     onChange={(e) => setConfig({ ...config, companyName: e.target.value })}
                     placeholder="Nome da sua empresa"
+                    className="hover:bg-gray-900 hover:text-white focus:bg-gray-900 focus:text-white transition-colors"
                   />
                 </div>
                 <div>
@@ -96,6 +97,7 @@ export function SystemConfig() {
                     value={config.slogan}
                     onChange={(e) => setConfig({ ...config, slogan: e.target.value })}
                     placeholder="Slogan da empresa"
+                    className="hover:bg-gray-900 hover:text-white focus:bg-gray-900 focus:text-white transition-colors"
                   />
                 </div>
               </div>
@@ -113,6 +115,7 @@ export function SystemConfig() {
                   value={config.email}
                   onChange={(e) => setConfig({ ...config, email: e.target.value })}
                   placeholder="contato@empresa.com"
+                  className="hover:bg-gray-900 hover:text-white focus:bg-gray-900 focus:text-white transition-colors"
                 />
               </div>
               <div>
@@ -121,6 +124,7 @@ export function SystemConfig() {
                   value={config.phone}
                   onChange={(e) => setConfig({ ...config, phone: e.target.value })}
                   placeholder="(11) 99999-9999"
+                  className="hover:bg-gray-900 hover:text-white focus:bg-gray-900 focus:text-white transition-colors"
                 />
               </div>
             </div>
@@ -131,6 +135,7 @@ export function SystemConfig() {
                 onChange={(e) => setConfig({ ...config, address: e.target.value })}
                 placeholder="Endereço completo da empresa"
                 rows={3}
+                className="hover:bg-gray-900 hover:text-white focus:bg-gray-900 focus:text-white transition-colors"
               />
             </div>
           </div>
@@ -139,31 +144,31 @@ export function SystemConfig() {
           <div className="space-y-4">
             <Label className="text-base font-semibold">Configurações de Sistema</Label>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Card className="hover:bg-slate-700 hover:text-white transition-colors cursor-pointer">
+              <Card className="hover:bg-gray-900 hover:text-white transition-colors cursor-pointer group">
                 <CardContent className="p-4 text-center">
-                  <Settings className="w-8 h-8 mx-auto mb-2" />
+                  <Settings className="w-8 h-8 mx-auto mb-2 group-hover:text-white" />
                   <h3 className="font-medium">Notificações</h3>
-                  <p className="text-sm text-gray-600 mt-1">
+                  <p className="text-sm text-gray-600 group-hover:text-gray-300 mt-1">
                     Configurar alertas e notificações
                   </p>
                 </CardContent>
               </Card>
               
-              <Card className="hover:bg-slate-700 hover:text-white transition-colors cursor-pointer">
+              <Card className="hover:bg-gray-900 hover:text-white transition-colors cursor-pointer group">
                 <CardContent className="p-4 text-center">
-                  <Settings className="w-8 h-8 mx-auto mb-2" />
+                  <Settings className="w-8 h-8 mx-auto mb-2 group-hover:text-white" />
                   <h3 className="font-medium">Integrações</h3>
-                  <p className="text-sm text-gray-600 mt-1">
+                  <p className="text-sm text-gray-600 group-hover:text-gray-300 mt-1">
                     APIs e serviços externos
                   </p>
                 </CardContent>
               </Card>
               
-              <Card className="hover:bg-slate-700 hover:text-white transition-colors cursor-pointer">
+              <Card className="hover:bg-gray-900 hover:text-white transition-colors cursor-pointer group">
                 <CardContent className="p-4 text-center">
-                  <Settings className="w-8 h-8 mx-auto mb-2" />
+                  <Settings className="w-8 h-8 mx-auto mb-2 group-hover:text-white" />
                   <h3 className="font-medium">Segurança</h3>
-                  <p className="text-sm text-gray-600 mt-1">
+                  <p className="text-sm text-gray-600 group-hover:text-gray-300 mt-1">
                     Políticas e permissões
                   </p>
                 </CardContent>
@@ -175,7 +180,7 @@ export function SystemConfig() {
           <div className="flex justify-end pt-4 border-t">
             <Button 
               onClick={handleSaveConfig}
-              className="hover:bg-slate-700 hover:text-white transition-colors"
+              className="hover:bg-gray-900 hover:text-white transition-colors"
             >
               <Save className="w-4 h-4 mr-2" />
               Salvar Configurações

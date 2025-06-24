@@ -14,12 +14,12 @@ export function AdminHeader() {
           <div className="flex space-x-3">
             <Button 
               variant="outline"
-              className="hover:bg-slate-700 hover:text-white transition-colors"
+              className="hover:bg-gray-900 hover:text-white transition-colors"
             >
               <Download className="w-4 h-4 mr-2" />
               Relatórios
             </Button>
-            <Button className="bg-orange-600 hover:bg-slate-700 hover:text-white transition-colors">
+            <Button className="bg-orange-600 hover:bg-gray-900 hover:text-white transition-colors">
               <Settings className="w-4 h-4 mr-2" />
               Configurações
             </Button>

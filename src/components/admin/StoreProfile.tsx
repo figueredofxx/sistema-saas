@@ -57,16 +57,15 @@ export function StoreProfile({ lojista, onUpdate }: StoreProfileProps) {
       title: "Login realizado",
       description: `Logado como ${lojista.name} com sucesso.`
     });
-    // Aqui seria implementada a lógica real de login
   };
 
   const getStatusBadge = (status: string) => {
     const styles = {
-      active: 'bg-green-100 text-green-700',
-      trial: 'bg-orange-100 text-orange-700',
-      expired: 'bg-red-100 text-red-700'
+      active: 'bg-green-100 text-green-700 hover:bg-gray-900 hover:text-white',
+      trial: 'bg-orange-100 text-orange-700 hover:bg-gray-900 hover:text-white',
+      expired: 'bg-red-100 text-red-700 hover:bg-gray-900 hover:text-white'
     };
-    return styles[status as keyof typeof styles] || 'bg-gray-100 text-gray-700';
+    return styles[status as keyof typeof styles] || 'bg-gray-100 text-gray-700 hover:bg-gray-900 hover:text-white';
   };
 
   const getStatusLabel = (status: string) => {
@@ -84,7 +83,7 @@ export function StoreProfile({ lojista, onUpdate }: StoreProfileProps) {
         <Button 
           size="sm" 
           variant="outline"
-          className="hover:bg-slate-700 hover:text-white transition-colors"
+          className="hover:bg-gray-900 hover:text-white transition-colors"
         >
           <User className="w-4 h-4 mr-1" />
           Perfil
@@ -100,19 +99,19 @@ export function StoreProfile({ lojista, onUpdate }: StoreProfileProps) {
         
         <div className="space-y-6">
           {/* Status e Ações */}
-          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-900 hover:text-white transition-colors group">
             <div className="flex items-center gap-3">
               <Badge className={getStatusBadge(lojista.status)}>
                 {getStatusLabel(lojista.status)}
               </Badge>
-              <span className="text-sm text-gray-600">CNPJ: {lojista.cnpj}</span>
+              <span className="text-sm text-gray-600 group-hover:text-gray-300">CNPJ: {lojista.cnpj}</span>
             </div>
             <div className="flex gap-2">
               <Button
                 size="sm"
                 variant="outline"
                 onClick={handleLoginAs}
-                className="hover:bg-slate-700 hover:text-white transition-colors"
+                className="hover:bg-gray-900 hover:text-white transition-colors"
               >
                 <LogIn className="w-4 h-4 mr-1" />
                 Login como
@@ -121,7 +120,7 @@ export function StoreProfile({ lojista, onUpdate }: StoreProfileProps) {
                 size="sm"
                 variant={lojista.status === 'active' ? 'destructive' : 'default'}
                 onClick={() => setShowConfirmDialog(true)}
-                className="hover:bg-slate-700 hover:text-white transition-colors"
+                className="hover:bg-gray-900 hover:text-white transition-colors"
               >
                 <Power className="w-4 h-4 mr-1" />
                 {lojista.status === 'active' ? 'Inativar' : 'Ativar'}
@@ -136,6 +135,7 @@ export function StoreProfile({ lojista, onUpdate }: StoreProfileProps) {
               <Input
                 value={editData.name}
                 onChange={(e) => setEditData({ ...editData, name: e.target.value })}
+                className="hover:bg-gray-900 hover:text-white focus:bg-gray-900 focus:text-white transition-colors"
               />
             </div>
             <div>
@@ -143,6 +143,7 @@ export function StoreProfile({ lojista, onUpdate }: StoreProfileProps) {
               <Input
                 value={editData.store}
                 onChange={(e) => setEditData({ ...editData, store: e.target.value })}
+                className="hover:bg-gray-900 hover:text-white focus:bg-gray-900 focus:text-white transition-colors"
               />
             </div>
             <div>
@@ -151,6 +152,7 @@ export function StoreProfile({ lojista, onUpdate }: StoreProfileProps) {
                 type="email"
                 value={editData.email}
                 onChange={(e) => setEditData({ ...editData, email: e.target.value })}
+                className="hover:bg-gray-900 hover:text-white focus:bg-gray-900 focus:text-white transition-colors"
               />
             </div>
             <div>
@@ -158,30 +160,31 @@ export function StoreProfile({ lojista, onUpdate }: StoreProfileProps) {
               <Input
                 value={editData.phone}
                 onChange={(e) => setEditData({ ...editData, phone: e.target.value })}
+                className="hover:bg-gray-900 hover:text-white focus:bg-gray-900 focus:text-white transition-colors"
               />
             </div>
           </div>
 
           {/* Informações adicionais */}
-          <div className="grid grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg">
+          <div className="grid grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-900 hover:text-white transition-colors group">
             <div>
-              <Label className="text-sm text-gray-600">Plano</Label>
+              <Label className="text-sm text-gray-600 group-hover:text-gray-300">Plano</Label>
               <p className="font-medium">{lojista.plan === 'single' ? 'Loja Única' : 'Multiloja'}</p>
             </div>
             <div>
-              <Label className="text-sm text-gray-600">Último Acesso</Label>
+              <Label className="text-sm text-gray-600 group-hover:text-gray-300">Último Acesso</Label>
               <p className="font-medium">{lojista.lastLogin}</p>
             </div>
             <div>
-              <Label className="text-sm text-gray-600">Receita</Label>
-              <p className="font-medium text-green-600">{lojista.revenue}</p>
+              <Label className="text-sm text-gray-600 group-hover:text-gray-300">Receita</Label>
+              <p className="font-medium text-green-600 group-hover:text-green-300">{lojista.revenue}</p>
             </div>
           </div>
 
           <div className="flex justify-end gap-2">
             <Button 
               onClick={handleSave}
-              className="hover:bg-slate-700 hover:text-white transition-colors"
+              className="hover:bg-gray-900 hover:text-white transition-colors"
             >
               <Edit className="w-4 h-4 mr-1" />
               Salvar Alterações
@@ -193,7 +196,7 @@ export function StoreProfile({ lojista, onUpdate }: StoreProfileProps) {
       {/* Modal de Confirmação */}
       {showConfirmDialog && (
         <Dialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>
-          <DialogContent>
+          <DialogContent className="hover:bg-gray-900 hover:text-white transition-colors">
             <DialogHeader>
               <DialogTitle>Confirmar Ação</DialogTitle>
             </DialogHeader>
@@ -201,10 +204,17 @@ export function StoreProfile({ lojista, onUpdate }: StoreProfileProps) {
               Tem certeza que deseja {lojista.status === 'active' ? 'inativar' : 'ativar'} o cadastro de {lojista.name}?
             </p>
             <div className="flex justify-end gap-2 mt-4">
-              <Button variant="outline" onClick={() => setShowConfirmDialog(false)}>
+              <Button 
+                variant="outline" 
+                onClick={() => setShowConfirmDialog(false)}
+                className="hover:bg-gray-900 hover:text-white transition-colors"
+              >
                 Cancelar
               </Button>
-              <Button onClick={handleToggleStatus}>
+              <Button 
+                onClick={handleToggleStatus}
+                className="hover:bg-gray-900 hover:text-white transition-colors"
+              >
                 Confirmar
               </Button>
             </div>

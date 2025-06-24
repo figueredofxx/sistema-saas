@@ -30,11 +30,11 @@ export function LojistasTab({ lojistas, onUpdateLojista }: LojistasTabProps) {
 
   const getStatusBadge = (status: string) => {
     const styles = {
-      active: 'bg-green-100 text-green-700',
-      trial: 'bg-orange-100 text-orange-700',
-      expired: 'bg-red-100 text-red-700'
+      active: 'bg-green-100 text-green-700 hover:bg-gray-900 hover:text-white',
+      trial: 'bg-orange-100 text-orange-700 hover:bg-gray-900 hover:text-white',
+      expired: 'bg-red-100 text-red-700 hover:bg-gray-900 hover:text-white'
     };
-    return styles[status as keyof typeof styles] || 'bg-gray-100 text-gray-700';
+    return styles[status as keyof typeof styles] || 'bg-gray-100 text-gray-700 hover:bg-gray-900 hover:text-white';
   };
 
   const getStatusLabel = (status: string) => {
@@ -58,12 +58,12 @@ export function LojistasTab({ lojistas, onUpdateLojista }: LojistasTabProps) {
                 placeholder="Buscar lojista..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 w-64"
+                className="pl-10 w-64 hover:bg-gray-900 hover:text-white focus:bg-gray-900 focus:text-white transition-colors"
               />
             </div>
             <Button 
               variant="outline"
-              className="hover:bg-slate-700 hover:text-white transition-colors"
+              className="hover:bg-gray-900 hover:text-white transition-colors"
             >
               <Filter className="w-4 h-4 mr-2" />
               Filtros
@@ -88,12 +88,12 @@ export function LojistasTab({ lojistas, onUpdateLojista }: LojistasTabProps) {
             </thead>
             <tbody>
               {lojistas.map((lojista) => (
-                <tr key={lojista.id} className="border-b hover:bg-gray-50">
+                <tr key={lojista.id} className="border-b hover:bg-gray-900 hover:text-white transition-colors group">
                   <td className="py-3">{lojista.name}</td>
                   <td className="py-3">{lojista.store}</td>
                   <td className="py-3 font-mono text-sm">{lojista.cnpj}</td>
                   <td className="text-center py-3">
-                    <Badge variant="outline">
+                    <Badge variant="outline" className="hover:bg-gray-900 hover:text-white transition-colors">
                       {lojista.plan === 'single' ? 'Única' : 'Multi'}
                     </Badge>
                   </td>
@@ -113,7 +113,7 @@ export function LojistasTab({ lojistas, onUpdateLojista }: LojistasTabProps) {
                       <Button 
                         size="sm" 
                         variant="outline"
-                        className="hover:bg-slate-700 hover:text-white transition-colors"
+                        className="hover:bg-gray-900 hover:text-white transition-colors"
                       >
                         Detalhes
                       </Button>

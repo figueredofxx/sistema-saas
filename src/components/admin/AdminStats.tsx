@@ -39,15 +39,15 @@ export function AdminStats() {
       {stats.map((stat, index) => {
         const Icon = stat.icon;
         return (
-          <Card key={index} className="hover:bg-slate-700 hover:text-white transition-colors cursor-pointer">
+          <Card key={index} className="hover:bg-gray-900 hover:text-white transition-colors cursor-pointer group">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">{stat.title}</p>
-                  <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                  <p className="text-sm text-green-600">{stat.change}</p>
+                  <p className="text-sm font-medium text-gray-600 group-hover:text-gray-300">{stat.title}</p>
+                  <p className="text-2xl font-bold text-gray-900 group-hover:text-white">{stat.value}</p>
+                  <p className="text-sm text-green-600 group-hover:text-green-300">{stat.change}</p>
                 </div>
-                <Icon className={`w-8 h-8 ${stat.color}`} />
+                <Icon className={`w-8 h-8 ${stat.color} group-hover:text-white`} />
               </div>
             </CardContent>
           </Card>

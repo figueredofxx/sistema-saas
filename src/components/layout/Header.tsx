@@ -28,7 +28,7 @@ export function Header({ sidebarOpen, setSidebarOpen }: HeaderProps) {
             variant="ghost"
             size="sm"
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="p-2 lg:hidden"
+            className="p-2 lg:hidden hover:bg-gray-900 hover:text-white transition-colors"
           >
             <div className="w-5 h-5 flex flex-col justify-center space-y-1">
               <div className="w-full h-0.5 bg-gray-600"></div>
@@ -42,7 +42,7 @@ export function Header({ sidebarOpen, setSidebarOpen }: HeaderProps) {
             <input
               type="text"
               placeholder="Buscar..."
-              className="pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-64"
+              className="pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-64 hover:bg-gray-900 hover:text-white transition-colors"
             />
           </div>
         </div>
@@ -50,32 +50,41 @@ export function Header({ sidebarOpen, setSidebarOpen }: HeaderProps) {
         <div className="flex items-center space-x-4">
           <TrialCounter />
           
-          <Button variant="outline" size="sm" className="hidden sm:flex">
+          <Button variant="outline" size="sm" className="hidden sm:flex hover:bg-gray-900 hover:text-white transition-colors">
             <Plus className="w-4 h-4 mr-2" />
             Vender
           </Button>
           
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm" className="flex items-center space-x-2">
+              <Button variant="ghost" size="sm" className="flex items-center space-x-2 hover:bg-gray-900 hover:text-white transition-colors">
                 <User className="w-6 h-6 lg:w-8 lg:h-8 text-gray-400" />
                 <span className="text-sm font-medium text-gray-700 hidden sm:block">
                   {user?.name}
                 </span>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56">
-              <DropdownMenuItem onClick={() => navigate('/subscription')}>
+            <DropdownMenuContent align="end" className="w-56 bg-white border border-gray-200 shadow-lg z-50">
+              <DropdownMenuItem 
+                onClick={() => navigate('/subscription')}
+                className="hover:bg-gray-900 hover:text-white transition-colors cursor-pointer"
+              >
                 <Crown className="w-4 h-4 mr-2" />
                 Planos e Assinatura
               </DropdownMenuItem>
               {user?.role === 'admin' && (
-                <DropdownMenuItem onClick={() => navigate('/admin')}>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/admin')}
+                  className="hover:bg-gray-900 hover:text-white transition-colors cursor-pointer"
+                >
                   <User className="w-4 h-4 mr-2" />
                   Dashboard Admin
                 </DropdownMenuItem>
               )}
-              <DropdownMenuItem onClick={handleLogout}>
+              <DropdownMenuItem 
+                onClick={handleLogout}
+                className="hover:bg-gray-900 hover:text-white transition-colors cursor-pointer"
+              >
                 <LogOut className="w-4 h-4 mr-2" />
                 Sair
               </DropdownMenuItem>

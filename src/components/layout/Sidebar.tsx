@@ -72,7 +72,7 @@ export function Sidebar({ activeModule, setActiveModule, isOpen, setIsOpen }: Si
         <div className="p-4 lg:p-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center hover:bg-gray-900 transition-colors">
                 <span className="text-white font-bold text-sm">A</span>
               </div>
               {isOpen && (
@@ -87,7 +87,7 @@ export function Sidebar({ activeModule, setActiveModule, isOpen, setIsOpen }: Si
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsOpen(false)}
-                className="lg:hidden p-1"
+                className="lg:hidden p-1 hover:bg-gray-900 hover:text-white transition-colors"
               >
                 <X className="w-4 h-4" />
               </Button>
@@ -107,10 +107,10 @@ export function Sidebar({ activeModule, setActiveModule, isOpen, setIsOpen }: Si
                   }
                 }}
                 className={cn(
-                  "w-full flex items-center px-3 py-3 mb-1 rounded-lg transition-all duration-200 hover:bg-gray-50",
+                  "w-full flex items-center px-3 py-3 mb-1 rounded-lg transition-all duration-200 hover:bg-gray-900 hover:text-white",
                   activeModule === item.id
-                    ? "bg-orange-50 text-orange-600 border-r-2 border-orange-500"
-                    : "text-gray-600 hover:text-gray-900"
+                    ? "bg-orange-50 text-orange-600 border-r-2 border-orange-500 hover:bg-gray-900 hover:text-white"
+                    : "text-gray-600"
                 )}
               >
                 <item.icon className="w-5 h-5 flex-shrink-0" />
@@ -124,12 +124,12 @@ export function Sidebar({ activeModule, setActiveModule, isOpen, setIsOpen }: Si
 
         {isOpen && (
           <div className="absolute bottom-4 lg:bottom-6 left-0 right-0 px-4 lg:px-6">
-            <div className="bg-gray-50 rounded-lg p-4">
+            <div className="bg-gray-50 rounded-lg p-4 hover:bg-gray-900 hover:text-white transition-colors group">
               <div className="flex items-center space-x-3">
-                <User className="w-8 h-8 text-gray-400 flex-shrink-0" />
+                <User className="w-8 h-8 text-gray-400 group-hover:text-white flex-shrink-0" />
                 <div className="min-w-0">
-                  <p className="text-sm font-medium text-gray-900 truncate">Ronei</p>
-                  <p className="text-xs text-gray-500 truncate">Loja do Ronei Social</p>
+                  <p className="text-sm font-medium text-gray-900 group-hover:text-white truncate">Ronei</p>
+                  <p className="text-xs text-gray-500 group-hover:text-gray-300 truncate">Loja do Ronei Social</p>
                 </div>
               </div>
             </div>
