@@ -46,7 +46,7 @@ export function Products() {
 
   const [filters, setFilters] = useState({
     search: "",
-    category: "",
+    category: "todas",
     lowStock: false
   });
 
@@ -55,7 +55,7 @@ export function Products() {
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(filters.search.toLowerCase()) ||
                          product.imei?.includes(filters.search);
-    const matchesCategory = !filters.category || product.category === filters.category;
+    const matchesCategory = filters.category === "todas" || product.category === filters.category;
     const matchesLowStock = !filters.lowStock || product.stock <= 5;
     
     return matchesSearch && matchesCategory && matchesLowStock;

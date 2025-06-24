@@ -10,8 +10,8 @@ import { Sale } from "./sales/types";
 export function Sales() {
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedSeller, setSelectedSeller] = useState("");
-  const [selectedPayment, setSelectedPayment] = useState("");
+  const [selectedSeller, setSelectedSeller] = useState("todos");
+  const [selectedPayment, setSelectedPayment] = useState("todas");
 
   const [sales] = useState<Sale[]>([
     {
@@ -42,8 +42,8 @@ export function Sales() {
   const filteredSales = sales.filter(sale => {
     const matchesSearch = sale.customer.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          sale.id.includes(searchTerm);
-    const matchesSeller = selectedSeller === "" || sale.seller === selectedSeller;
-    const matchesPayment = selectedPayment === "" || sale.paymentMethod === selectedPayment;
+    const matchesSeller = selectedSeller === "todos" || sale.seller === selectedSeller;
+    const matchesPayment = selectedPayment === "todas" || sale.paymentMethod === selectedPayment;
     
     return matchesSearch && matchesSeller && matchesPayment;
   });

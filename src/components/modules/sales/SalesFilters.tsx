@@ -42,7 +42,7 @@ export function SalesFilters({
             <SelectValue placeholder="Todos" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Todos</SelectItem>
+            <SelectItem value="todos">Todos</SelectItem>
             <SelectItem value="João">João</SelectItem>
             <SelectItem value="Maria">Maria</SelectItem>
             <SelectItem value="Pedro">Pedro</SelectItem>
@@ -56,7 +56,7 @@ export function SalesFilters({
             <SelectValue placeholder="Todas" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Todas</SelectItem>
+            <SelectItem value="todas">Todas</SelectItem>
             <SelectItem value="dinheiro">Dinheiro</SelectItem>
             <SelectItem value="cartao">Cartão</SelectItem>
             <SelectItem value="pix">PIX</SelectItem>
