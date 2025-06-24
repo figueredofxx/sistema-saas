@@ -1,11 +1,10 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Plus, Print, Trash2, ShoppingCart } from "lucide-react";
+import { Plus, Printer, Trash2, ShoppingCart } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface SaleItem {
@@ -149,7 +148,7 @@ export function Sales() {
           <h1 className="text-2xl font-bold text-gray-900">Comprovante de Venda</h1>
           <div className="space-x-4">
             <Button onClick={printSale} className="bg-orange-500 hover:bg-orange-600">
-              <Print className="w-4 h-4 mr-2" />
+              <Printer className="w-4 h-4 mr-2" />
               Imprimir
             </Button>
             <Button variant="outline" onClick={newSale}>
