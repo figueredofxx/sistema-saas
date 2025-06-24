@@ -64,7 +64,7 @@ export function Sidebar({ activeModule, setActiveModule, isOpen, setIsOpen }: Si
       )}
 
       <div className={cn(
-        "fixed left-0 top-0 h-full bg-white border-r border-gray-200 transition-all duration-300 z-50",
+        "fixed left-0 top-0 h-full bg-gradient-to-b from-violet-50 to-violet-100 border-r border-violet-200 transition-all duration-300 z-50",
         "lg:z-40",
         isOpen ? "w-64" : "w-16 lg:w-16",
         isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
@@ -72,13 +72,13 @@ export function Sidebar({ activeModule, setActiveModule, isOpen, setIsOpen }: Si
         <div className="p-4 lg:p-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center hover:bg-gray-900 transition-colors">
-                <span className="text-white font-bold text-sm">A</span>
+              <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                <span className="text-white font-bold text-sm">E</span>
               </div>
               {isOpen && (
                 <div>
-                  <h1 className="text-lg font-bold text-gray-900">Apex</h1>
-                  <p className="text-xs text-orange-600 font-medium">Comércio</p>
+                  <h1 className="text-lg font-bold text-violet-900">Sistema</h1>
+                  <p className="text-xs text-violet-600 font-medium">ERP SaaS</p>
                 </div>
               )}
             </div>
@@ -87,7 +87,7 @@ export function Sidebar({ activeModule, setActiveModule, isOpen, setIsOpen }: Si
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsOpen(false)}
-                className="lg:hidden p-1 hover:bg-gray-900 hover:text-white transition-colors"
+                className="lg:hidden p-1 hover:bg-violet-200 text-violet-700 transition-colors"
               >
                 <X className="w-4 h-4" />
               </Button>
@@ -107,10 +107,10 @@ export function Sidebar({ activeModule, setActiveModule, isOpen, setIsOpen }: Si
                   }
                 }}
                 className={cn(
-                  "w-full flex items-center px-3 py-3 mb-1 rounded-lg transition-all duration-200 hover:bg-gray-900 hover:text-white",
+                  "w-full flex items-center px-3 py-3 mb-2 rounded-2xl transition-all duration-200",
                   activeModule === item.id
-                    ? "bg-orange-50 text-orange-600 border-r-2 border-orange-500 hover:bg-gray-900 hover:text-white"
-                    : "text-gray-600"
+                    ? "bg-gradient-to-r from-violet-500 to-purple-600 text-white shadow-lg"
+                    : "text-violet-700 hover:bg-violet-200"
                 )}
               >
                 <item.icon className="w-5 h-5 flex-shrink-0" />
@@ -124,12 +124,14 @@ export function Sidebar({ activeModule, setActiveModule, isOpen, setIsOpen }: Si
 
         {isOpen && (
           <div className="absolute bottom-4 lg:bottom-6 left-0 right-0 px-4 lg:px-6">
-            <div className="bg-gray-50 rounded-lg p-4 hover:bg-gray-900 hover:text-white transition-colors group">
+            <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-4 border border-violet-200">
               <div className="flex items-center space-x-3">
-                <User className="w-8 h-8 text-gray-400 group-hover:text-white flex-shrink-0" />
+                <div className="w-8 h-8 bg-gradient-to-br from-violet-400 to-purple-500 rounded-full flex items-center justify-center text-white font-medium text-sm">
+                  R
+                </div>
                 <div className="min-w-0">
-                  <p className="text-sm font-medium text-gray-900 group-hover:text-white truncate">Ronei</p>
-                  <p className="text-xs text-gray-500 group-hover:text-gray-300 truncate">Loja do Ronei Social</p>
+                  <p className="text-sm font-medium text-violet-900 truncate">Ronei</p>
+                  <p className="text-xs text-violet-600 truncate">Sistema ERP SaaS</p>
                 </div>
               </div>
             </div>

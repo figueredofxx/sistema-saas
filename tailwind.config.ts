@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -20,7 +19,7 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Google Sans', 'system-ui', 'sans-serif'],
+				sans: ['Inter', 'system-ui', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -29,85 +28,85 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: '#6750A4',
+					DEFAULT: '#8B5CF6',
 					foreground: '#FFFFFF'
 				},
 				secondary: {
-					DEFAULT: '#625B71',
-					foreground: '#FFFFFF'
+					DEFAULT: '#C4B5FD',
+					foreground: '#581C87'
 				},
 				tertiary: {
-					DEFAULT: '#7D5260',
+					DEFAULT: '#A855F7',
 					foreground: '#FFFFFF'
 				},
 				surface: {
-					DEFAULT: '#FEF7FF',
+					DEFAULT: '#FAF8FF',
 					variant: '#E7E0EC',
 					container: '#F3EDF7',
 					'container-high': '#ECE6F0',
 					'container-highest': '#E6E0E9'
 				},
 				outline: {
-					DEFAULT: '#79747E',
+					DEFAULT: '#DDD6FE',
 					variant: '#CAC4D0'
 				},
 				error: {
-					DEFAULT: '#BA1A1A',
+					DEFAULT: '#EF4444',
 					foreground: '#FFFFFF',
-					container: '#FFDAD6'
+					container: '#FECACA'
 				},
 				warning: {
-					DEFAULT: '#8B5000',
+					DEFAULT: '#F59E0B',
 					foreground: '#FFFFFF',
-					container: '#FFDDB3'
+					container: '#FEF3C7'
 				},
 				success: {
-					DEFAULT: '#006E1C',
+					DEFAULT: '#10B981',
 					foreground: '#FFFFFF',
-					container: '#A7F432'
+					container: '#D1FAE5'
 				},
 				destructive: {
-					DEFAULT: '#BA1A1A',
+					DEFAULT: '#EF4444',
 					foreground: '#FFFFFF'
 				},
 				muted: {
-					DEFAULT: '#F3EDF7',
-					foreground: '#49454F'
+					DEFAULT: '#F3E8FF',
+					foreground: '#581C87'
 				},
 				accent: {
-					DEFAULT: '#625B71',
-					foreground: '#FFFFFF'
+					DEFAULT: '#C4B5FD',
+					foreground: '#581C87'
 				},
 				popover: {
-					DEFAULT: '#FEF7FF',
+					DEFAULT: '#FAF8FF',
 					foreground: '#1C1B1F'
 				},
 				card: {
-					DEFAULT: '#FEF7FF',
+					DEFAULT: '#FAF8FF',
 					foreground: '#1C1B1F'
 				},
 				sidebar: {
-					DEFAULT: '#FEF7FF',
+					DEFAULT: '#FAF8FF',
 					foreground: '#1C1B1F',
-					primary: '#6750A4',
+					primary: '#8B5CF6',
 					'primary-foreground': '#FFFFFF',
-					accent: '#E7E0EC',
+					accent: '#DDD6FE',
 					'accent-foreground': '#1C1B1F',
-					border: '#E7E0EC',
-					ring: '#6750A4'
+					border: '#DDD6FE',
+					ring: '#8B5CF6'
 				}
 			},
 			borderRadius: {
-				lg: '16px',
-				md: '12px',
-				sm: '8px'
+				lg: '20px',
+				md: '16px',
+				sm: '12px'
 			},
 			boxShadow: {
-				'elevation-1': '0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
-				'elevation-2': '0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15)',
-				'elevation-3': '0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15)',
-				'elevation-4': '0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 6px 10px 4px rgba(0, 0, 0, 0.15)',
-				'elevation-5': '0px 4px 4px 0px rgba(0, 0, 0, 0.3), 0px 8px 12px 6px rgba(0, 0, 0, 0.15)'
+				'elevation-1': '0px 1px 2px 0px rgba(139, 92, 246, 0.15), 0px 1px 3px 1px rgba(139, 92, 246, 0.1)',
+				'elevation-2': '0px 1px 2px 0px rgba(139, 92, 246, 0.15), 0px 2px 6px 2px rgba(139, 92, 246, 0.1)',
+				'elevation-3': '0px 1px 3px 0px rgba(139, 92, 246, 0.15), 0px 4px 8px 3px rgba(139, 92, 246, 0.1)',
+				'elevation-4': '0px 2px 3px 0px rgba(139, 92, 246, 0.15), 0px 6px 10px 4px rgba(139, 92, 246, 0.1)',
+				'elevation-5': '0px 4px 4px 0px rgba(139, 92, 246, 0.15), 0px 8px 12px 6px rgba(139, 92, 246, 0.1)'
 			},
 			keyframes: {
 				'accordion-down': {

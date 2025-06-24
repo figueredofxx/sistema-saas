@@ -1,51 +1,51 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Material Design 3 Design System */
+/* Material Design 3 Design System com cores roxo/lilás */
 
 @layer base {
   :root {
-    --background: 254 247 255;
+    --background: 250 248 255;
     --foreground: 28 27 31;
 
-    --card: 254 247 255;
+    --card: 250 248 255;
     --card-foreground: 28 27 31;
 
-    --popover: 254 247 255;
+    --popover: 250 248 255;
     --popover-foreground: 28 27 31;
 
-    --primary: 103 80 164;
+    --primary: 139 92 246;
     --primary-foreground: 255 255 255;
 
-    --secondary: 98 91 113;
-    --secondary-foreground: 255 255 255;
+    --secondary: 196 181 253;
+    --secondary-foreground: 88 28 135;
 
-    --muted: 243 237 247;
-    --muted-foreground: 73 69 79;
+    --muted: 243 232 255;
+    --muted-foreground: 88 28 135;
 
-    --accent: 98 91 113;
-    --accent-foreground: 255 255 255;
+    --accent: 196 181 253;
+    --accent-foreground: 88 28 135;
 
-    --destructive: 186 26 26;
+    --destructive: 239 68 68;
     --destructive-foreground: 255 255 255;
 
-    --border: 231 224 236;
-    --input: 231 224 236;
-    --ring: 103 80 164;
+    --border: 221 214 254;
+    --input: 221 214 254;
+    --ring: 139 92 246;
 
-    --radius: 16px;
+    --radius: 20px;
 
-    --sidebar-background: 254 247 255;
+    --sidebar-background: 250 248 255;
     --sidebar-foreground: 28 27 31;
-    --sidebar-primary: 103 80 164;
+    --sidebar-primary: 139 92 246;
     --sidebar-primary-foreground: 255 255 255;
-    --sidebar-accent: 231 224 236;
+    --sidebar-accent: 221 214 254;
     --sidebar-accent-foreground: 28 27 31;
-    --sidebar-border: 231 224 236;
-    --sidebar-ring: 103 80 164;
+    --sidebar-border: 221 214 254;
+    --sidebar-ring: 139 92 246;
   }
 
   .dark {
@@ -55,27 +55,27 @@
     --card-foreground: 230 225 229;
     --popover: 16 16 20;
     --popover-foreground: 230 225 229;
-    --primary: 208 188 255;
-    --primary-foreground: 56 30 114;
-    --secondary: 204 196 220;
-    --secondary-foreground: 50 47 53;
+    --primary: 196 181 253;
+    --primary-foreground: 88 28 135;
+    --secondary: 139 92 246;
+    --secondary-foreground: 255 255 255;
     --muted: 39 35 42;
     --muted-foreground: 202 196 208;
     --accent: 39 35 42;
     --accent-foreground: 230 225 229;
-    --destructive: 255 180 171;
-    --destructive-foreground: 105 0 5;
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
     --border: 39 35 42;
     --input: 39 35 42;
-    --ring: 208 188 255;
+    --ring: 196 181 253;
     --sidebar-background: 16 16 20;
     --sidebar-foreground: 230 225 229;
-    --sidebar-primary: 208 188 255;
-    --sidebar-primary-foreground: 56 30 114;
+    --sidebar-primary: 196 181 253;
+    --sidebar-primary-foreground: 88 28 135;
     --sidebar-accent: 39 35 42;
     --sidebar-accent-foreground: 230 225 229;
     --sidebar-border: 39 35 42;
-    --sidebar-ring: 208 188 255;
+    --sidebar-ring: 196 181 253;
   }
 }
 
@@ -86,26 +86,26 @@
 
   body {
     @apply bg-background text-foreground font-sans;
-    font-family: 'Google Sans', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Google Sans', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 }
 
 /* Material Design 3 Component Styles */
 @layer components {
   .md3-surface {
-    @apply bg-surface rounded-xl shadow-elevation-1;
+    @apply bg-surface rounded-3xl shadow-elevation-1;
   }
 
   .md3-surface-variant {
-    @apply bg-surface-variant rounded-xl;
+    @apply bg-surface-variant rounded-3xl;
   }
 
   .md3-container {
-    @apply bg-surface-container rounded-xl shadow-elevation-1;
+    @apply bg-surface-container rounded-3xl shadow-elevation-1;
   }
 
   .md3-filled-button {
@@ -114,7 +114,7 @@
 
   .md3-filled-button:hover {
     @apply shadow-elevation-2;
-    background-color: rgb(103 80 164 / 0.9);
+    background-color: rgb(139 92 246 / 0.9);
   }
 
   .md3-outlined-button {
@@ -123,7 +123,7 @@
 
   .md3-outlined-button:hover {
     @apply shadow-elevation-1;
-    background-color: rgb(103 80 164 / 0.08);
+    background-color: rgb(139 92 246 / 0.08);
   }
 
   .md3-text-button {
@@ -131,11 +131,11 @@
   }
 
   .md3-text-button:hover {
-    background-color: rgb(103 80 164 / 0.08);
+    background-color: rgb(139 92 246 / 0.08);
   }
 
   .md3-elevated-card {
-    @apply bg-surface shadow-elevation-1 rounded-xl transition-all duration-200;
+    @apply bg-surface shadow-elevation-1 rounded-3xl transition-all duration-200;
   }
 
   .md3-elevated-card:hover {
@@ -143,11 +143,11 @@
   }
 
   .md3-filled-card {
-    @apply bg-surface-container-highest rounded-xl;
+    @apply bg-surface-container-highest rounded-3xl;
   }
 
   .md3-outlined-card {
-    @apply bg-surface border border-outline-variant rounded-xl;
+    @apply bg-surface border border-outline-variant rounded-3xl;
   }
 }
 

@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SalesChart } from "@/components/charts/SalesChart";
-import { PaymentMethodChart } from "@/components/charts/PaymentMethodChart";
+import { SalesPieChart } from "@/components/charts/PieChart";
 import { RecentTransactions } from "@/components/dashboard/RecentTransactions";
 import { QuickStats } from "@/components/dashboard/QuickStats";
 
@@ -11,7 +11,7 @@ export function Dashboard() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Estatísticas</h1>
+          <h1 className="text-2xl font-bold text-gray-900">Sistema ERP SaaS</h1>
           <p className="text-gray-600">Visão geral do seu negócio</p>
         </div>
       </div>
@@ -22,10 +22,10 @@ export function Dashboard() {
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Sales Chart */}
-        <Card>
+        <Card className="md3-elevated-card">
           <CardHeader>
             <CardTitle className="flex items-center text-gray-900">
-              <div className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></div>
+              <div className="w-2 h-2 bg-violet-500 rounded-full mr-3"></div>
               Total de Vendas
             </CardTitle>
           </CardHeader>
@@ -48,23 +48,23 @@ export function Dashboard() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-600">Lucro (%)</p>
-                  <p className="text-xl font-bold text-emerald-600">35,68 %</p>
+                  <p className="text-xl font-bold text-violet-600">35,68 %</p>
                 </div>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        {/* Payment Methods */}
-        <Card>
+        {/* Sales Pie Chart */}
+        <Card className="md3-elevated-card">
           <CardHeader>
             <CardTitle className="flex items-center text-gray-900">
-              <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-              Meios de pagamento
+              <div className="w-2 h-2 bg-violet-500 rounded-full mr-3"></div>
+              Resumo de Vendas do Dia
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <PaymentMethodChart />
+            <SalesPieChart />
           </CardContent>
         </Card>
       </div>
@@ -72,10 +72,10 @@ export function Dashboard() {
       {/* Bottom Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Sellers Performance */}
-        <Card>
+        <Card className="md3-elevated-card">
           <CardHeader>
             <CardTitle className="flex items-center text-gray-900">
-              <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+              <div className="w-2 h-2 bg-violet-500 rounded-full mr-3"></div>
               Vendedores
             </CardTitle>
           </CardHeader>
@@ -83,7 +83,7 @@ export function Dashboard() {
             <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <span className="text-gray-600">Ronei</span>
-                <span className="font-bold text-emerald-600">R$ 26.881,80</span>
+                <span className="font-bold text-violet-600">R$ 26.881,80</span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-gray-600">Sem vendedor</span>
