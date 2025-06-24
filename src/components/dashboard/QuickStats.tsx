@@ -1,50 +1,49 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 
 export function QuickStats() {
   const stats = [
     {
-      label: "Cartão de Crédito Visa",
-      value: "R$ 2.709,00",
-      subtitle: "Taxa: R$ 105,36",
-      color: "bg-blue-500",
-    },
-    {
-      label: "Pix Nubank",
-      value: "R$ 6.078,90",
-      subtitle: "",
+      label: "Vendas Hoje",
+      value: "25",
+      subtitle: "Vendas realizadas",
       color: "bg-purple-500",
     },
     {
-      label: "Cartão Master",
-      value: "R$ 5.378,00",
-      subtitle: "Taxa: R$ 71,77",
-      color: "bg-orange-500",
-    },
-    {
-      label: "Crediário",
-      value: "R$ 2.899,00",
-      subtitle: "",
+      label: "Receita Hoje",
+      value: "R$ 3.240",
+      subtitle: "Faturamento",
       color: "bg-green-500",
     },
     {
-      label: "Dinheiro",
-      value: "R$ 5.048,00",
-      subtitle: "",
-      color: "bg-emerald-500",
+      label: "Produtos",
+      value: "1.234",
+      subtitle: "Em estoque",
+      color: "bg-blue-500",
     },
     {
-      label: "Cartão de débito",
-      value: "R$ 539,00",
-      subtitle: "Taxa: R$ 16,17",
-      color: "bg-gray-500",
+      label: "Clientes",
+      value: "567",
+      subtitle: "Cadastrados",
+      color: "bg-orange-500",
+    },
+    {
+      label: "Ticket Médio",
+      value: "R$ 129,60",
+      subtitle: "Por venda",
+      color: "bg-indigo-500",
+    },
+    {
+      label: "Meta Mensal",
+      value: "78%",
+      subtitle: "Atingida",
+      color: "bg-pink-500",
     },
   ];
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
       {stats.map((stat, index) => (
-        <Card key={index} className="hover:shadow-md transition-shadow">
+        <Card key={index} className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow">
           <CardContent className="p-4">
             <div className="flex items-center space-x-3">
               <div className={`w-3 h-3 rounded-full ${stat.color}`}></div>

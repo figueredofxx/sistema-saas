@@ -1,4 +1,3 @@
-
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
@@ -10,18 +9,18 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "md3-filled-button",
-        destructive: "bg-error text-error-foreground hover:bg-error/90 hover:shadow-elevation-2 rounded-full px-6 py-3",
-        outline: "md3-outlined-button",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/90 hover:shadow-elevation-2 rounded-full px-6 py-3",
-        ghost: "md3-text-button",
-        link: "text-primary underline-offset-4 hover:underline rounded-none px-0 py-0",
+        default: "bg-purple-600 text-white hover:bg-purple-700 rounded-lg px-6 py-3",
+        destructive: "bg-red-600 text-white hover:bg-red-700 rounded-lg px-6 py-3",
+        outline: "border border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white rounded-lg px-6 py-3",
+        secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200 rounded-lg px-6 py-3",
+        ghost: "text-gray-700 hover:bg-purple-50 hover:text-purple-700 rounded-lg px-3 py-2",
+        link: "text-purple-600 underline-offset-4 hover:underline rounded-none px-0 py-0",
       },
       size: {
         default: "h-12 px-6 py-3",
-        sm: "h-10 rounded-full px-4 text-sm",
-        lg: "h-14 rounded-full px-8 text-lg",
-        icon: "h-12 w-12 rounded-full",
+        sm: "h-10 rounded-lg px-4 text-sm",
+        lg: "h-14 rounded-lg px-8 text-lg",
+        icon: "h-12 w-12 rounded-lg",
       },
     },
     defaultVariants: {

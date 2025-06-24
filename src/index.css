@@ -1,80 +1,79 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Material Design 3 Design System com cores roxo/lilás */
+/* Clean, flat design system with purple primary colors */
 
 @layer base {
   :root {
-    --background: 250 248 255;
-    --foreground: 28 27 31;
+    --background: 255 255 255;
+    --foreground: 15 23 42;
 
-    --card: 250 248 255;
-    --card-foreground: 28 27 31;
+    --card: 255 255 255;
+    --card-foreground: 15 23 42;
 
-    --popover: 250 248 255;
-    --popover-foreground: 28 27 31;
+    --popover: 255 255 255;
+    --popover-foreground: 15 23 42;
 
     --primary: 139 92 246;
     --primary-foreground: 255 255 255;
 
-    --secondary: 196 181 253;
-    --secondary-foreground: 88 28 135;
+    --secondary: 241 245 249;
+    --secondary-foreground: 51 65 85;
 
-    --muted: 243 232 255;
-    --muted-foreground: 88 28 135;
+    --muted: 248 250 252;
+    --muted-foreground: 100 116 139;
 
-    --accent: 196 181 253;
-    --accent-foreground: 88 28 135;
+    --accent: 139 92 246;
+    --accent-foreground: 255 255 255;
 
     --destructive: 239 68 68;
     --destructive-foreground: 255 255 255;
 
-    --border: 221 214 254;
-    --input: 221 214 254;
+    --border: 226 232 240;
+    --input: 226 232 240;
     --ring: 139 92 246;
 
-    --radius: 20px;
+    --radius: 8px;
 
-    --sidebar-background: 250 248 255;
-    --sidebar-foreground: 28 27 31;
+    --sidebar-background: 255 255 255;
+    --sidebar-foreground: 15 23 42;
     --sidebar-primary: 139 92 246;
     --sidebar-primary-foreground: 255 255 255;
-    --sidebar-accent: 221 214 254;
-    --sidebar-accent-foreground: 28 27 31;
-    --sidebar-border: 221 214 254;
+    --sidebar-accent: 248 250 252;
+    --sidebar-accent-foreground: 15 23 42;
+    --sidebar-border: 226 232 240;
     --sidebar-ring: 139 92 246;
   }
 
   .dark {
-    --background: 16 16 20;
-    --foreground: 230 225 229;
-    --card: 16 16 20;
-    --card-foreground: 230 225 229;
-    --popover: 16 16 20;
-    --popover-foreground: 230 225 229;
+    --background: 15 23 42;
+    --foreground: 248 250 252;
+    --card: 15 23 42;
+    --card-foreground: 248 250 252;
+    --popover: 15 23 42;
+    --popover-foreground: 248 250 252;
     --primary: 196 181 253;
     --primary-foreground: 88 28 135;
-    --secondary: 139 92 246;
-    --secondary-foreground: 255 255 255;
-    --muted: 39 35 42;
-    --muted-foreground: 202 196 208;
-    --accent: 39 35 42;
-    --accent-foreground: 230 225 229;
+    --secondary: 30 41 59;
+    --secondary-foreground: 226 232 240;
+    --muted: 30 41 59;
+    --muted-foreground: 148 163 184;
+    --accent: 30 41 59;
+    --accent-foreground: 248 250 252;
     --destructive: 239 68 68;
     --destructive-foreground: 255 255 255;
-    --border: 39 35 42;
-    --input: 39 35 42;
+    --border: 30 41 59;
+    --input: 30 41 59;
     --ring: 196 181 253;
-    --sidebar-background: 16 16 20;
-    --sidebar-foreground: 230 225 229;
+    --sidebar-background: 15 23 42;
+    --sidebar-foreground: 248 250 252;
     --sidebar-primary: 196 181 253;
     --sidebar-primary-foreground: 88 28 135;
-    --sidebar-accent: 39 35 42;
-    --sidebar-accent-foreground: 230 225 229;
-    --sidebar-border: 39 35 42;
+    --sidebar-accent: 30 41 59;
+    --sidebar-accent-foreground: 248 250 252;
+    --sidebar-border: 30 41 59;
     --sidebar-ring: 196 181 253;
   }
 }
@@ -94,60 +93,30 @@
   }
 }
 
-/* Material Design 3 Component Styles */
+/* Clean, flat component styles */
 @layer components {
-  .md3-surface {
-    @apply bg-surface rounded-3xl shadow-elevation-1;
+  .flat-card {
+    @apply bg-white border border-gray-200 rounded-lg shadow-sm;
   }
 
-  .md3-surface-variant {
-    @apply bg-surface-variant rounded-3xl;
+  .flat-button {
+    @apply bg-purple-600 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200;
   }
 
-  .md3-container {
-    @apply bg-surface-container rounded-3xl shadow-elevation-1;
+  .flat-button:hover {
+    @apply bg-purple-700;
   }
 
-  .md3-filled-button {
-    @apply bg-primary text-primary-foreground rounded-full px-6 py-3 font-medium transition-all duration-200;
+  .flat-button-outline {
+    @apply border border-purple-600 text-purple-600 px-4 py-2 rounded-lg font-medium transition-colors duration-200;
   }
 
-  .md3-filled-button:hover {
-    @apply shadow-elevation-2;
-    background-color: rgb(139 92 246 / 0.9);
+  .flat-button-outline:hover {
+    @apply bg-purple-600 text-white;
   }
 
-  .md3-outlined-button {
-    @apply border border-outline text-primary rounded-full px-6 py-3 font-medium transition-all duration-200;
-  }
-
-  .md3-outlined-button:hover {
-    @apply shadow-elevation-1;
-    background-color: rgb(139 92 246 / 0.08);
-  }
-
-  .md3-text-button {
-    @apply text-primary rounded-full px-4 py-2 font-medium transition-all duration-200;
-  }
-
-  .md3-text-button:hover {
-    background-color: rgb(139 92 246 / 0.08);
-  }
-
-  .md3-elevated-card {
-    @apply bg-surface shadow-elevation-1 rounded-3xl transition-all duration-200;
-  }
-
-  .md3-elevated-card:hover {
-    @apply shadow-elevation-2;
-  }
-
-  .md3-filled-card {
-    @apply bg-surface-container-highest rounded-3xl;
-  }
-
-  .md3-outlined-card {
-    @apply bg-surface border border-outline-variant rounded-3xl;
+  .flat-input {
+    @apply border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent;
   }
 }
 
